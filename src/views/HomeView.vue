@@ -53,12 +53,18 @@ import { watch } from 'vue';
 export default defineComponent({
   setup() {
     const todoStore = useTodoStore();
-    watch(() => todoStore.todos, (newValue, oldValue) => {
-      console.log(`State changed from ${oldValue} to ${newValue}`);
-    });
     const newTodoTitle = ref('');
     const editingTodoId = ref<number | null>(null);
     const editedTodoTitle = ref('');
+
+    watch(
+      todoStore.todos,
+      (state) => {
+        // persist the whole state to the local storage whenever it changes
+        sessionStorage.setItem('todos', JSON.stringify(state))
+      },
+      { deep: true }
+    )
 
     const addTodo = () => {
       if (newTodoTitle.value.trim()) {
@@ -87,8 +93,8 @@ export default defineComponent({
 
     return {
       newTodoTitle,
+      // todos: todoStore.todos,
       todos: todoStore.todos,
-      // todos: window.sessionStorage.getItem('todos') || todoStore.todos,
       editingTodoId,
       editedTodoTitle,
       addTodo,

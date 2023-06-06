@@ -32,6 +32,7 @@
     flex-direction: column;
     width: 100%;
     .todo {
+      transition: .5s;
       padding: 15px;
       box-shadow: 1px 1px 5px 1px rgba(0,0,0, .5);
       margin: 10px 0;
@@ -39,6 +40,7 @@
       align-items: center;
       &.checked {
         order: 100;
+        
       }
       .edit-icon-wrap {
         width: 30px;

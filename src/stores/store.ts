@@ -53,7 +53,7 @@ export interface Todo {
 
 export const useTodoStore = defineStore('todo', {
   state: () => ({
-    todos: [
+    todos: JSON.parse(window.sessionStorage.getItem('todos')) || [
       {
         id: 1,
         title: 'Buy vodka',
