@@ -10,7 +10,7 @@ const queryData = urlParams.get('data') ? JSON.parse(urlParams.get('data') as st
 
 export const useTodoStore = defineStore('todo', {
   state: () => ({
-    todos: queryData || window.sessionStorage.getItem('todos') ? JSON.parse(window.sessionStorage.getItem('todos') as string) : [
+    todos: queryData || JSON.parse(window.sessionStorage.getItem('todos') as string) || [
       {
         id: 1,
         title: 'Buy vodka',
