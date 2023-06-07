@@ -1,10 +1,9 @@
 <template>
   <div class="todos-page-wrap">
     <h1>Friday night plans</h1>
-    <!-- <button v-if="isStateUpdated.updated" @click="copyLink">Copy Link to My List</button> -->
-    <button @click="copyLink">Copy Link to My List</button>
+    <button class="copy-list" @click="copyLink">Copy Link to My List</button>
     <form @submit.prevent="addTodo">
-      <input type="text" v-model="newTodoTitle" placeholder="Enter new ToDrink list item" />
+      <input type="text" v-model="newTodoTitle" placeholder="Add new friday plan" />
       <button type="submit">Add</button>
     </form>
     <div class="todos-wrap">
