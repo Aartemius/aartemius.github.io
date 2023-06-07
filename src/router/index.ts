@@ -6,14 +6,19 @@ import { links } from './links'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // {
+    //   path: links.home,
+    //   name: 'home',
+    //   component: HomeComponent
+    // },
+    // {
+    //   path: links.todos,
+    //   name: 'todos',
+    //   component: TodosList
+    // },
     {
       path: links.home,
       name: 'home',
-      component: HomeComponent
-    },
-    {
-      path: links.todos,
-      name: 'todos',
       component: TodosList
     }
   ]
