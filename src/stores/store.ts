@@ -31,7 +31,7 @@ export const useTodoStore = defineStore('todo', {
         completed: false,
       };
 
-      this.todos.push(newTodo);
+      this.todos.unshift(newTodo);
     },
     updateTodoTitle: function (todo: Todo, newTitle: string) {
       todo.title = newTitle;
