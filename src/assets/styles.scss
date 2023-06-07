@@ -1,3 +1,21 @@
+* {
+  font-family: sans-serif;
+}
+.home-link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  background: #fff;
+  padding: 4px;
+  border: 1px solid #000;
+  width: fit-content;
+  margin: 0 auto;
+  transition: .3s;
+  &:hover {
+    filter: invert(1);
+  }
+}
 .todos-page-wrap {
   max-width: 50%;
   margin: 0 auto;
@@ -38,9 +56,9 @@
       margin: 10px 0;
       display: flex;
       align-items: center;
+      font-size: 1.3rem;
       &.checked {
         order: 100;
-        
       }
       .edit-icon-wrap {
         width: 30px;
@@ -58,6 +76,10 @@
       }
       input[type="checkbox"] {
         margin-right: 10px;
+      }
+      input[type="text"] {
+        font-size: 1rem;
+        padding: 3px;
       }
     }
   }  

@@ -1,8 +1,10 @@
 <template>
   <div class="todos-page-wrap">
     <h1>Friday night plans</h1>
+    <!-- <button v-if="isStateUpdated.updated" @click="copyLink">Copy Link to My List</button> -->
+    <button @click="copyLink">Copy Link to My List</button>
     <form @submit.prevent="addTodo">
-      <input type="text" v-model="newTodoTitle" placeholder="Enter a new todo" />
+      <input type="text" v-model="newTodoTitle" placeholder="Enter new ToDrink list item" />
       <button type="submit">Add</button>
     </form>
     <div class="todos-wrap">
@@ -26,6 +28,7 @@
         </template>
         <template v-else>
           <input
+            type="text"
             v-model="editedTodoTitle"
             @keyup.enter="saveTodoTitle(todo)"
           />
@@ -51,16 +54,36 @@ import { useTodoStore, type Todo } from '../stores/store';
 import { watch } from 'vue';
 
 export default defineComponent({
+  data() {
+    return {
+      link: '',
+      encodedData: '',
+    };
+  },
+  methods: {
+    copyLink() {
+      const data = sessionStorage.getItem('todos');
+      const encodedData = encodeURIComponent(data as string | number | boolean);
+      this.link = `${window.location.href.split('?')[0]}`;
+      this.encodedData = `?data=${encodedData}`;
+      const el = document.createElement('textarea');
+      el.value = `${this.link}${this.encodedData}`;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      alert('Link copied to clipboard!');
+    }
+  },
+
+
   setup() {
     const todoStore = useTodoStore();
     const newTodoTitle = ref('');
     const editingTodoId = ref<number | null>(null);
     const editedTodoTitle = ref('');
 
-    watch(
-      todoStore.todos,
-      (state) => {
-        // persist the whole state to the local storage whenever it changes
+    watch(todoStore.todos, state => {
         sessionStorage.setItem('todos', JSON.stringify(state))
       },
       { deep: true }
@@ -93,7 +116,6 @@ export default defineComponent({
 
     return {
       newTodoTitle,
-      // todos: todoStore.todos,
       todos: todoStore.todos,
       editingTodoId,
       editedTodoTitle,
