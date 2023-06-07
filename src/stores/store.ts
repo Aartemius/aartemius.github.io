@@ -6,11 +6,11 @@ export interface Todo {
 }
 
 const urlParams = new URLSearchParams(window.location.search);
-const queryData = JSON.parse(urlParams.get('data')) || null;
+const queryData = urlParams.get('data') ? JSON.parse(urlParams.get('data') as string) : null;
 
 export const useTodoStore = defineStore('todo', {
   state: () => ({
-    todos: queryData || JSON.parse(window.sessionStorage.getItem('todos')) || [
+    todos: queryData || window.sessionStorage.getItem('todos') ? JSON.parse(window.sessionStorage.getItem('todos') as string) : [
       {
         id: 1,
         title: 'Buy vodka',
