@@ -30,7 +30,6 @@ export const useTodoStore = defineStore('todo', {
         title,
         completed: false,
       };
-
       this.todos.unshift(newTodo);
     },
     updateTodoTitle: function (todo: Todo, newTitle: string) {
@@ -44,6 +43,10 @@ export const useTodoStore = defineStore('todo', {
       if (index !== -1) {
         this.todos.splice(index, 1);
       }
+    },
+    updateTodosOrder: function (updatedTodos: Todo[]) {
+      this.todos.value = updatedTodos;
+      sessionStorage.setItem('todos', JSON.stringify(updatedTodos))
     },
   },
 });
