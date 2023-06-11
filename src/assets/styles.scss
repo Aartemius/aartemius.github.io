@@ -44,6 +44,9 @@
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
+    @media (max-width: 500px) {
+      flex-direction: column;
+    }
     input, button {
       font-size: 1.2rem;
     }
@@ -55,6 +58,10 @@
       background: transparent;
       border: 1px solid #000;
       cursor: pointer;
+      @media (max-width: 500px) {
+        align-self: center;
+        margin-top: 1rem;
+      }
     }
   }
   .todos-wrap {
@@ -69,6 +76,7 @@
       display: flex;
       align-items: center;
       font-size: 1.3rem;
+      cursor: grab;
       &.checked {
         order: 100;
       }
